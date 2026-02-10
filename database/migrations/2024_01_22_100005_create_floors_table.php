@@ -14,7 +14,10 @@ return new class extends Migration
             $table->integer('floor_number');
             $table->string('floor_name');
             $table->integer('total_rooms');
+            $table->text('description')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

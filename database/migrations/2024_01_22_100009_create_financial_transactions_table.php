@@ -18,9 +18,11 @@ return new class extends Migration
             $table->foreignId('hostel_id')->nullable()->constrained('hostels')->onDelete('cascade');
             $table->foreignId('student_id')->nullable()->constrained('students')->onDelete('set null');
             $table->foreignId('created_by')->nullable()->constrained('admins')->onDelete('set null');
-            $table->string('payment_method')->nullable();
+            $table->enum('payment_method', ['Cash', 'Bank Transfer', 'UPI', 'Card', 'Cheque'])->nullable();
             $table->string('receipt_number')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

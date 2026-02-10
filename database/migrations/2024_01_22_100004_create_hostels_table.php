@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('contact_number');
             $table->string('email')->nullable();
             $table->integer('total_floors');
+            $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

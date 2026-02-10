@@ -13,8 +13,10 @@ return new class extends Migration
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->string('bed_number')->unique();
             $table->enum('bed_type', ['Standard', 'Premium', 'Deluxe'])->default('Standard');
+            $table->enum('status', ['Available', 'Occupied', 'Under Maintenance'])->default('Available');
             $table->boolean('is_occupied')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

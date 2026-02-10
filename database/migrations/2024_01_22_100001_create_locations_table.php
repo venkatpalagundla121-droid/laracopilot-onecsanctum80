@@ -12,13 +12,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('address');
-            $table->string('city', 100);
-            $table->string('state', 100);
-            $table->string('pincode', 10);
+            $table->string('city');
+            $table->string('state');
+            $table->string('pincode');
+            $table->string('contact_number')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('locations');

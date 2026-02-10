@@ -15,8 +15,10 @@ return new class extends Migration
             $table->enum('room_type', ['Single', 'Double', 'Triple', 'Quad', 'Dormitory']);
             $table->integer('bed_capacity');
             $table->decimal('rent_per_bed', 10, 2)->nullable();
+            $table->text('amenities')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
