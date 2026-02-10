@@ -11,23 +11,24 @@ class HostelSeeder extends Seeder
     public function run()
     {
         $locations = Location::all();
-        
+
+        $hostels = [
+            ['name' => 'Boys Hostel A', 'contact' => '+91-9876543220', 'floors' => 4],
+            ['name' => 'Girls Hostel B', 'contact' => '+91-9876543221', 'floors' => 3],
+        ];
+
         foreach ($locations as $location) {
-            Hostel::create([
-                'name' => $location->name . ' Boys Hostel',
-                'location_id' => $location->id,
-                'address' => $location->address . ' - Building A',
-                'contact_number' => '+91-' . rand(7000000000, 9999999999),
-                'total_floors' => rand(3, 5)
-            ]);
-            
-            Hostel::create([
-                'name' => $location->name . ' Girls Hostel',
-                'location_id' => $location->id,
-                'address' => $location->address . ' - Building B',
-                'contact_number' => '+91-' . rand(7000000000, 9999999999),
-                'total_floors' => rand(3, 5)
-            ]);
+            foreach ($hostels as $hostel) {
+                Hostel::create([
+                    'name' => $hostel['name'],
+                    'location_id' => $location->id,
+                    'address' => $location->address,
+                    'contact_number' => $hostel['contact'],
+                    'email' => strtolower(str_replace(' ', '.', $hostel['name'])) . '@hostel.com',
+                    'total_floors' => $hostel['floors'],
+                    'is_active' => true
+                ]);
+            }
         }
     }
 }
